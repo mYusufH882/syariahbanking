@@ -8,7 +8,7 @@ router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
 
 router.get('/', (req, res) => {
-    res.json({ message: 'Welcome to Yuscode API, API active' });
+    res.json({ message: 'Welcome to Boilerplate Yuscode Backend API, API is active now !!!' });
 });
 
 module.exports = router;
