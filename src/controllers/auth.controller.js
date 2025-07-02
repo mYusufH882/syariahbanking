@@ -1,6 +1,6 @@
-const { registerSchema, loginSchema } = require('../../validations/auth/auth.validation');
-const { successResponse } = require('../../utils/response.util');
-const authService = require('../../services/auth.service');
+const { registerSchema, loginSchema } = require('../validations/auth/auth.validation');
+const { successResponse } = require('../utils/response.util');
+const authService = require('../services/auth.service');
 
 const register = async (req, res, next) => { 
     try {

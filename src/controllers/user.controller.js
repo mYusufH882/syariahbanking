@@ -1,6 +1,6 @@
-const { successResponse } = require('../../utils/response.util');
-const { AppError } = require('../../utils/error.util');
-const userService = require('../../services/user.service');
+const { successResponse } = require('../utils/response.util');
+const { AppError } = require('../utils/error.util');
+const userService = require('../services/user.service');
 
 const getProfile = async (req, res, next) => {
     try {
