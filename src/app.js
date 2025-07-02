@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const errorHandler = require('./middlewares/error.middleware');
+const errorHandler = require('./shared/middlewares/error.middleware');
 require('dotenv').config();
 
 const app = express();

@@ -1,5 +1,5 @@
 const userRepository = require('../repositories/user.repository');
-const { AppError } = require('../utils/error.util');
+const { AppError } = require('../../../shared/utils/error.util');
 
 class UserService { 
     async getProfile(userId) {

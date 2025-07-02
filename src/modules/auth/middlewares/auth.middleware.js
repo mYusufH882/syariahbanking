@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const jwtConfig = require('../../../shared/config/jwt.config');
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -10,7 +11,7 @@ const authMiddleware = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, jwtConfig.secret);
         req.user = {
             userId: decoded.id,
             email: decoded.email,

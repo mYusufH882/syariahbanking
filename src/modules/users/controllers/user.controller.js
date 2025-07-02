@@ -1,5 +1,5 @@
-const { successResponse } = require('../utils/response.util');
-const { AppError } = require('../utils/error.util');
+const { successResponse } = require('../../../shared/utils/response.util');
+const { AppError } = require('../../../shared/utils/error.util');
 const userService = require('../services/user.service');
 
 const getProfile = async (req, res, next) => {

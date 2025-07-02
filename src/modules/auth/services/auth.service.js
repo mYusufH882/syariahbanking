@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authRepository = require('../repositories/auth.repository');
-const { AppError } = require('../utils/error.util');
+const { AppError } = require('../../../shared/utils/error.util');
+const jwtConfig = require('../../../shared/config/jwt.config');
 
 class AuthService { 
     async register(userData) { 
@@ -43,8 +44,8 @@ class AuthService {
 
         const token = jwt.sign(
             { id: user.id },
-            process.env.JWT_SECRET,
-            { expiresIn: '1d' }
+            jwtConfig.secret,
+            { expiresIn: jwtConfig.expiresIn }
         );
 
         return {
