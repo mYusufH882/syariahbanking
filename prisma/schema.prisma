@@ -22,4 +22,214 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  accounts      Account[]
+  transactions  Transaction[]
+  transfers     Transfer[]
+  qrCodes       QRCode[]
+  notifications Notification[]
+  Beneficiary   Beneficiary[]
+}
+
+model Account {
+  id            Int      @id @default(autoincrement())
+  accountNumber String   @unique
+  accountName   String
+  accountType   String   @default("SAVINGS")
+  balance       Decimal  @default(0.00) @db.Decimal(15, 2)
+  currency      String   @default("IDR")
+  isActive      Boolean  @default(true)
+  userId        Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User          @relation(fields: [userId], references: [id])
+  transactions  Transaction[]
+  transfersFrom Transfer[]    @relation("FromAccount")
+  transfersTo   Transfer[]    @relation("ToAccount")
+  qrCodes       QRCode[]
+}
+
+enum AccountType {
+  SAVINGS
+  CURRENT
+  BUSINESS
+}
+
+model Transaction {
+  id            Int               @id @default(autoincrement())
+  transactionId String            @unique
+  type          TransactionType
+  amount        Decimal           @db.Decimal(15, 2)
+  balanceBefore Decimal           @db.Decimal(15, 2)
+  balanceAfter  Decimal           @db.Decimal(15, 2)
+  description   String?
+  reference     String?
+  status        TransactionStatus @default(PENDING)
+  accountId     Int
+  userId        Int
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  user      User        @relation(fields: [userId], references: [id])
+  account   Account     @relation(fields: [accountId], references: [id])
+  transfer  Transfer?
+  qrPayment QRPayment[]
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  TRANSFER_IN
+  TRANSFER_OUT
+  QR_PAYMENT
+  QR_RECEIVE
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+model Transfer {
+  id          Int            @id @default(autoincrement())
+  transferId  String
+  type        TransferType
+  amount      Decimal        @db.Decimal(15, 2)
+  fee         Decimal        @default(0.00) @db.Decimal(15, 2)
+  description String?
+  reference   String?
+  status      TransferStatus @default(PENDING)
+
+  fromAccountId     Int
+  fromAccountNumber String
+
+  toAccountId     Int?
+  toAccountNumber String
+  toAccountName   String
+  toBankCode      String?
+  toBankName      String?
+
+  userId        Int
+  transactionId Int @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id])
+  fromAccount Account      @relation("FromAccount", fields: [fromAccountId], references: [id])
+  toAccount   Account?     @relation("ToAccount", fields: [toAccountId], references: [id])
+  transaction Transaction  @relation(fields: [transactionId], references: [id])
+  beneficiary Beneficiary?
+}
+
+enum TransferType {
+  INTERNAL
+  EXTERNAL
+}
+
+enum TransferStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+model Beneficiary {
+  id            Int      @id @default(autoincrement())
+  name          String
+  accountNumber String
+  bankCode      String
+  bankName      String
+  isActive      Boolean  @default(true)
+  userId        Int
+  transferId    Int?     @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id])
+  transfer Transfer? @relation(fields: [transferId], references: [id])
+
+  @@unique([userId, accountNumber])
+}
+
+model QRCode {
+  id          Int       @id @default(autoincrement())
+  qrCodeId    String    @unique
+  qrString    String    @db.Text
+  amount      Decimal?  @db.Decimal(15, 2)
+  description String?
+  isActive    Boolean   @default(true)
+  expiresAt   DateTime?
+  accountId   Int
+  userId      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user     User        @relation(fields: [userId], references: [id])
+  account  Account     @relation(fields: [accountId], references: [id])
+  payments QRPayment[]
+}
+
+model QRPayment {
+  id            Int           @id @default(autoincrement())
+  paymentId     String        @unique
+  qrCodeId      String
+  amount        Decimal       @db.Decimal(15, 2)
+  status        PaymentStatus @default(PENDING)
+  payerName     String?
+  payerAccount  String?
+  transactionId Int           @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  qrCode      QRCode      @relation(fields: [qrCodeId], references: [qrCodeId])
+  transaction Transaction @relation(fields: [transactionId], references: [id])
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  EXPIRED
+}
+
+model Notification {
+  id        Int                 @id @default(autoincrement())
+  title     String
+  message   String              @db.Text
+  type      NotificationType
+  channel   NotificationChannel
+  status    NotificationStatus  @default(PENDING)
+  data      Json?
+  userId    Int
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum NotificationType {
+  TRANSACTION
+  TRANSFER
+  QR_PAYMENT
+  ACCOUNT_UPDATE
+  SECURITY_ALERT
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+  PUSH
+  IN_APP
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+  READ
 }
