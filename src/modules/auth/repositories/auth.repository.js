@@ -1,9 +1,20 @@
 const prisma = require('../../../shared/config/database');
+const { generateAccountNumber } = require('../../../shared/utils/generator');
 
 class AuthRepository { 
     async create(userData) { 
         return await prisma.user.create({
-            data: userData,
+            data: {
+                ...userData,
+                accounts: {
+                    create: {
+                        accountName: generateAccountNumber(),
+                        accountType: 'SAVINGS',
+                        accountNumber: `ACC-${Date.now()}`,
+                        balance: 0,
+                    }
+                }
+            },
             select: {
                 id: true,
                 name: true,
