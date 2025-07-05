@@ -12,6 +12,7 @@ class AuthRepository {
                         accountType: 'SAVINGS',
                         accountNumber: `ACC-${Date.now()}`,
                         balance: 0,
+                        isActive: false,
                     }
                 }
             },

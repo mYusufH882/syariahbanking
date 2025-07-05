@@ -11,7 +11,17 @@ class UserRepository {
                 lastName: true,
                 email: true,
                 createdAt: true,
-                updatedAt: true
+                updatedAt: true,
+                accounts: {
+                    select: {
+                        id: true,
+                        accountName: true,
+                        accountType: true,
+                        accountNumber: true,
+                        balance: true,
+                        isActive: true,
+                    }
+                }
             }
         });
     }
