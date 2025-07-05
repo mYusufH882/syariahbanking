@@ -1,14 +1,24 @@
 const express = require('express');
 const cors = require('cors');
-const morgan = require('morgan');
-const errorHandler = require('./shared/middlewares/error.middleware');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
+
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+}
+
+const morganMiddleware = require('./shared/middlewares/logging.middleware');
+const requestIdMiddleware = require('./shared/middlewares/request-id.middleware');
+const errorHandler = require('./shared/middlewares/error.middleware');
 
 const app = express();
 
+app.use(requestIdMiddleware);
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morganMiddleware);
 
 const apiRoutes = require('./routes');
 app.use('/api', apiRoutes);
