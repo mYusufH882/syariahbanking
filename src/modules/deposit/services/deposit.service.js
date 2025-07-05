@@ -34,9 +34,13 @@ class DepositService {
     }
 
     calculateBalance(currentBalance, depositAmount) {
+        const balanceBefore = parseFloat(currentBalance.toString());
+        const amount = parseFloat(depositAmount.toString());
+        const balanceAfter = balanceBefore + amount;
+
         return {
-            balanceBefore: currentBalance,
-            balanceAfter: currentBalance + depositAmount
+            balanceBefore: balanceBefore,
+            balanceAfter: balanceAfter
         };
     }
 
@@ -49,6 +53,10 @@ class DepositService {
             const transactionId = generateTransactionId();
 
             const account = await this.validateAccount(data.accountNumber, data.userId);
+
+            if (!account || account.length === 0) {
+                throw new AppError("Akun Rekening tidak ditemukan", 404);
+            }
 
             await this.validateAccountActivation(account, data.amount);
 
@@ -85,7 +93,13 @@ class DepositService {
     }
 
     async getDeposits(userId) {
-        return await depositRepository.getDepositByUser(userId);
+        const deposit = await depositRepository.getDepositByUser(userId);
+
+        if (!deposit || deposit.length === 0) {
+            throw new AppError("Deposit tidak ditemukan", 404);
+        }
+
+        return deposit;
     }
 }
 

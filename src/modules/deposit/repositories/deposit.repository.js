@@ -55,14 +55,19 @@ class DepositRepository {
             },
         });
 
-        return result._sum.amount || 0;
+        return parseFloat(result._sum.amount?.toString() || '0');
     }
 
     async createDepositTransaction(data, tx = null) {
         const client = tx || prisma;
 
         return await client.transaction.create({
-            data: data
+            data: {
+                ...data,
+                amount: parseFloat(data.amount.toString()),
+                balanceBefore: parseFloat(data.balanceBefore.toString()),
+                balanceAfter: parseFloat(data.balanceAfter.toString()),
+            }
         });
     }
 
@@ -72,7 +77,7 @@ class DepositRepository {
         return await client.account.update({
             where: { id: accountId },
             data: {
-                balance: newBalance,
+                balance: parseFloat(newBalance.toString()),
                 updatedAt: new Date(),
             }
         });
@@ -123,6 +128,16 @@ class DepositRepository {
                 userId: userId,
                 type: 'DEPOSIT',
                 status: 'SUCCESS'
+            },
+            include: {
+                account: {
+                    select: {
+                        accountNumber: true,
+                        accountType: true,
+                        accountName: true,
+                        isActive: true
+                    }
+                }
             }
         });
     }

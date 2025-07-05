@@ -6,7 +6,7 @@ const depositRequestSchema = z.object({
         .number()
         .positive({ message: "Jumlah deposit harus lebih besar dari 0" })
         .min(10000, { message: "Jumlah deposit minimal Rp 10.000" })
-        .min(50000, { message: "Jumlah deposit maksimal Rp 50.000" }),
+        .max(50000000, { message: "Jumlah deposit maksimal Rp 50.000.000" }),
 
     accountNumber: z
         .string({
@@ -36,7 +36,11 @@ const validateDepositRequest = (data) => {
             data: validated,
         };
     } catch (error) {
-        throw new AppError("Validasi deposit gagal: " + error.message);
+        if (error.errors) {
+            // Jika error dari Zod, ambil message dari error pertama
+            throw new AppError("Validasi deposit gagal: " + error.errors[0].message, 400);
+        }
+        throw new AppError("Validasi deposit gagal: " + error.message, 400);
     }
 };
 

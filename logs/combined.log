@@ -1,3 +1,275 @@
 {"level":"info","message":"GET /api/deposit/ 200 308.290 ms - 375 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:11:00.757Z"}
 {"level":"info","message":"GET /api/users/profile 401 1.474 ms - 50 | User: anonymous | reqID: [object Object]","timestamp":"2025-07-05T12:11:14.025Z"}
 {"level":"info","message":"POST /api/deposit/create 200 116.012 ms - 184 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:11:37.255Z"}
+{"level":"info","message":"POST /api/deposit/create 500 13.914 ms - 75 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:30:58.137Z"}
+{"level":"info","message":"GET /api/users/profile 500 40.475 ms - 34 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:31:05.565Z"}
+{"level":"info","message":"GET /api/deposit/ 200 20.874 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:31:09.343Z"}
+{"level":"info","message":"GET /api/deposit/ 200 7.452 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:33:33.034Z"}
+{"level":"info","message":"GET /api/users/profile 500 6.011 ms - 34 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:33:36.561Z"}
+{"level":"info","message":"GET /api/deposit/ 200 36.472 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:34:50.751Z"}
+{"level":"info","message":"POST /api/deposit/create 500 8.265 ms - 75 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:34:54.519Z"}
+{"level":"info","message":"GET /api/deposit/ 200 37.596 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:36:15.244Z"}
+{"level":"info","message":"POST /api/auth/login 500 44.527 ms - 39 | User: anonymous | reqID: [object Object]","timestamp":"2025-07-05T12:36:54.115Z"}
+{"level":"info","message":"GET /api/deposit/ 200 12.273 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:36:57.577Z"}
+{"level":"info","message":"GET /api/deposit/ 200 40.384 ms - 76 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:38:54.995Z"}
+{"level":"info","message":"GET /api/deposit/ 500 51.519 ms - 37 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:40:57.316Z"}
+{"level":"info","message":"GET /api/deposit/ 500 38.249 ms - 37 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:41:49.042Z"}
+{"level":"info","message":"POST /api/deposit/create 500 11.702 ms - 75 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:43:06.509Z"}
+{"level":"info","message":"POST /api/deposit/create 500 13.912 ms - 75 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:45:08.991Z"}
+{"level":"info","message":"POST /api/deposit/create 500 54.807 ms - 38 | User: 2 | reqID: [object Object]","timestamp":"2025-07-05T12:47:10.172Z"}
+2025-07-05 19:52:26 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:54:32 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:55:08 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:55:11 [ERROR]: Unhandled Error
+Error: Validasi deposit gagal: Jumlah deposit maksimal Rp 50.000.000
+    at validateDepositRequest (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\validations\deposit.validation.js:41:19)
+    at createDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:8:38)
+    at Layer.handleRequest (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\route.js:157:13)
+    at authMiddleware (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\auth\middlewares\auth.middleware.js:22:9)
+    at Layer.handleRequest (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\router\lib\layer.js:152:17)
+Meta: {
+  "error": "Validasi deposit gagal: Jumlah deposit maksimal Rp 50.000.000",
+  "requestId": "f62981c8-67f4-4616-afcf-b1794e572800",
+  "userId": 2,
+  "method": "POST",
+  "url": "/api/deposit/create",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": "{\"amount\":55000,\"accountNumber\":\"ACC-1751614628279\",\"description\":\"Top-up saldo untuk kuota\",\"reference\":\"REF002\",\"userId\":2}",
+  "query": "{}"
+}
+2025-07-05 19:55:11 [ERROR]: HTTP POST /api/deposit/create 400 11.043 ms - 1608 | User: 2 | ReqID: f62981c8-67f4-4616-afcf-b1794e572800
+2025-07-05 19:55:31 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:56:13 [INFO]: HTTP POST /api/auth/register 201 199.646 ms - 201 | User: anonymous | ReqID: 23cbd7aa-9db5-49eb-9854-652e5c7204f3
+2025-07-05 19:56:28 [ERROR]: Unhandled Error
+Error: Deposit tidak ditemukan
+    at DepositService.getDeposits (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:99:19)
+    at async getDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:39:30)
+Meta: {
+  "error": "Deposit tidak ditemukan",
+  "requestId": "faa9ab64-69eb-4617-b560-b3db500861ee",
+  "userId": 2,
+  "method": "GET",
+  "url": "/api/deposit/",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": null,
+  "query": "{}"
+}
+2025-07-05 19:56:28 [ERROR]: HTTP GET /api/deposit/ 404 21.069 ms - 451 | User: 2 | ReqID: faa9ab64-69eb-4617-b560-b3db500861ee
+2025-07-05 19:56:42 [INFO]: HTTP POST /api/auth/login 200 114.223 ms - 305 | User: anonymous | ReqID: 817dcfe8-2955-415d-b76b-ed5e9c7fc72f
+2025-07-05 19:56:55 [INFO]: HTTP GET /api/users/profile 200 18.413 ms - 390 | User: 1 | ReqID: 88d5cf1d-8fb2-42a9-b886-b74db0ed944e
+2025-07-05 19:57:01 [ERROR]: Unhandled Error
+Error: Deposit tidak ditemukan
+    at DepositService.getDeposits (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:99:19)
+    at async getDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:39:30)
+Meta: {
+  "error": "Deposit tidak ditemukan",
+  "requestId": "f4ca874d-7186-4c0c-82f5-b12fa6eaaf7d",
+  "userId": 1,
+  "method": "GET",
+  "url": "/api/deposit/",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": null,
+  "query": "{}"
+}
+2025-07-05 19:57:01 [ERROR]: HTTP GET /api/deposit/ 404 7.493 ms - 451 | User: 1 | ReqID: f4ca874d-7186-4c0c-82f5-b12fa6eaaf7d
+2025-07-05 19:57:57 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:57:58 [ERROR]: Unhandled Error
+Error: Deposit tidak ditemukan
+    at DepositService.getDeposits (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:99:19)
+    at async getDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:39:30)
+Meta: {
+  "error": "Deposit tidak ditemukan",
+  "requestId": "e2f27f61-d476-4ded-ab15-46a205199a4c",
+  "userId": 1,
+  "method": "GET",
+  "url": "/api/deposit/",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": null,
+  "query": "{}"
+}
+2025-07-05 19:57:58 [ERROR]: HTTP GET /api/deposit/ 404 27.385 ms - 451 | User: 1 | ReqID: e2f27f61-d476-4ded-ab15-46a205199a4c
+2025-07-05 19:58:13 [ERROR]: Unhandled Error
+Error: Deposit tidak ditemukan
+    at DepositService.getDeposits (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:99:19)
+    at async getDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:39:30)
+Meta: {
+  "error": "Deposit tidak ditemukan",
+  "requestId": "50281c71-fd85-47f4-94c1-280be7994f72",
+  "userId": 1,
+  "method": "GET",
+  "url": "/api/deposit/",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": null,
+  "query": "{}"
+}
+2025-07-05 19:58:13 [ERROR]: HTTP GET /api/deposit/ 404 6.375 ms - 451 | User: 1 | ReqID: 50281c71-fd85-47f4-94c1-280be7994f72
+2025-07-05 19:58:20 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 19:58:39 [ERROR]: Unhandled Error
+Error: Rekening tidak ditemukan
+    at DepositService.deposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:91:19)
+    at async createDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:15:28)
+Meta: {
+  "error": "Rekening tidak ditemukan",
+  "requestId": "d4e368ca-d180-4e55-b42f-de5273235eef",
+  "userId": 1,
+  "method": "POST",
+  "url": "/api/deposit/create",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": "{\"amount\":55000,\"accountNumber\":\"ACC-1751614628279\",\"description\":\"Top-up saldo untuk aktivasi rekening\",\"reference\":\"REF001\",\"userId\":1}",
+  "query": "{}"
+}
+2025-07-05 19:58:39 [ERROR]: HTTP POST /api/deposit/create 404 46.091 ms - 452 | User: 1 | ReqID: d4e368ca-d180-4e55-b42f-de5273235eef
+2025-07-05 19:59:18 [ERROR]: Unhandled Error
+Error: 
+Invalid `client.transaction.create()` invocation in
+C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\repositories\deposit.repository.js:64:41
+
+  61 async createDepositTransaction(data, tx = null) {
+  62     const client = tx || prisma;
+  63 
+→ 64     return await client.transaction.create({
+           data: {
+             transactionId: "DEP-20250705-56BED11B",
+             type: "DEPOSIT",
+             amount: 55000,
+             balanceBefore: 0,
+             balanceAfter: 55000,
+             description: "Top-up saldo untuk aktivasi rekening",
+             reference: "REF001",
+             status: "PENDING",
+             accountId: 1,
+             userId: 1
+           },
+           amount: 55000,
+           ~~~~~~
+           balanceBefore: 0,
+           balanceAfter: 55000
+         })
+
+Unknown argument `amount`. Available options are marked with ?.
+    at DepositService.deposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:91:19)
+    at async createDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:15:28)
+Meta: {
+  "error": "\nInvalid `client.transaction.create()` invocation in\nC:\\Users\\myusu\\Documents\\JAMSTACK_JS\\projects\\syariahbanking\\src\\modules\\deposit\\repositories\\deposit.repository.js:64:41\n\n  61 async createDepositTransaction(data, tx = null) {\n  62     const client = tx || prisma;\n  63 \n→ 64     return await client.transaction.create({\n           data: {\n             transactionId: \"DEP-20250705-56BED11B\",\n             type: \"DEPOSIT\",\n             amount: 55000,\n             balanceBefore: 0,\n             balanceAfter: 55000,\n             description: \"Top-up saldo untuk aktivasi rekening\",\n             reference: \"REF001\",\n             status: \"PENDING\",\n             accountId: 1,\n             userId: 1\n           },\n           amount: 55000,\n           ~~~~~~\n           balanceBefore: 0,\n           balanceAfter: 55000\n         })\n\nUnknown argument `amount`. Available options are marked with ?.",
+  "requestId": "1b4dfd08-2932-4e2c-804e-2e5f97459b67",
+  "userId": 1,
+  "method": "POST",
+  "url": "/api/deposit/create",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": "{\"amount\":55000,\"accountNumber\":\"ACC-1751720173649\",\"description\":\"Top-up saldo untuk aktivasi rekening\",\"reference\":\"REF001\",\"userId\":1}",
+  "query": "{}"
+}
+2025-07-05 19:59:18 [ERROR]: HTTP POST /api/deposit/create 500 40.239 ms - 2294 | User: 1 | ReqID: 1b4dfd08-2932-4e2c-804e-2e5f97459b67
+2025-07-05 20:21:19 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 20:21:24 [INFO]: HTTP POST /api/deposit/create 200 164.480 ms - 208 | User: 1 | ReqID: 7cec764a-adee-4b51-acea-2203d2dceae7
+2025-07-05 20:21:30 [INFO]: HTTP GET /api/deposit/ 200 12.593 ms - 397 | User: 1 | ReqID: 867f0fa1-9cea-45a7-864d-8ec939495aea
+2025-07-05 20:22:17 [INFO]: HTTP GET /api/users/profile 200 14.691 ms - 393 | User: 1 | ReqID: 2b2f19c5-bb1e-4323-a0d7-828b3e7abbca
+2025-07-05 20:24:23 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 20:25:26 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 20:25:41 [INFO]: HTTP GET /api/deposit/ 200 60.497 ms - 649 | User: 1 | ReqID: ac098002-2bf5-4958-a0f2-7df6358f9091
+2025-07-05 20:26:13 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 20:26:17 [ERROR]: Unhandled Error
+PrismaClientValidationError: 
+Invalid `prisma.transaction.findMany()` invocation in
+C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\repositories\deposit.repository.js:126:41
+
+  123 }
+  124 
+  125 async getDepositByUser(userId) {
+→ 126     return await prisma.transaction.findMany({
+            where: {
+              userId: 1,
+              type: "DEPOSIT",
+              status: "SUCCESS"
+            },
+            include: {
+              account: {
+                accountNumber: true,
+                ~~~~~~~~~~~~~
+                accountType: true,
+                accountName: true,
+                isActive: true
+              }
+            }
+          })
+
+Unknown argument `accountNumber`.
+    at kn (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\@prisma\client\runtime\library.js:29:1363)
+    at Xn.handleRequestError (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\@prisma\client\runtime\library.js:121:7102)
+    at Xn.handleAndLogRequestError (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\@prisma\client\runtime\library.js:121:6784)
+    at Xn.request (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\@prisma\client\runtime\library.js:121:6491)
+    at async l (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\node_modules\@prisma\client\runtime\library.js:130:9812)
+    at async DepositRepository.getDepositByUser (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\repositories\deposit.repository.js:126:16)
+    at async DepositService.getDeposits (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\services\deposit.service.js:96:25)
+    at async getDeposit (C:\Users\myusu\Documents\JAMSTACK_JS\projects\syariahbanking\src\modules\deposit\controllers\deposit.controller.js:39:30)
+Meta: {
+  "error": "\nInvalid `prisma.transaction.findMany()` invocation in\nC:\\Users\\myusu\\Documents\\JAMSTACK_JS\\projects\\syariahbanking\\src\\modules\\deposit\\repositories\\deposit.repository.js:126:41\n\n  123 }\n  124 \n  125 async getDepositByUser(userId) {\n→ 126     return await prisma.transaction.findMany({\n            where: {\n              userId: 1,\n              type: \"DEPOSIT\",\n              status: \"SUCCESS\"\n            },\n            include: {\n              account: {\n                accountNumber: true,\n                ~~~~~~~~~~~~~\n                accountType: true,\n                accountName: true,\n                isActive: true\n              }\n            }\n          })\n\nUnknown argument `accountNumber`.",
+  "requestId": "0fd8d74e-eda7-47b4-9b7d-00627ab4687a",
+  "userId": 1,
+  "method": "GET",
+  "url": "/api/deposit/",
+  "ip": "::1",
+  "userAgent": "PostmanRuntime/7.44.1",
+  "body": null,
+  "query": "{}"
+}
+2025-07-05 20:26:17 [ERROR]: HTTP GET /api/deposit/ 500 39.551 ms - 2867 | User: 1 | ReqID: 0fd8d74e-eda7-47b4-9b7d-00627ab4687a
+2025-07-05 20:27:41 [INFO]: Application starting up
+Meta: {
+  "nodeEnv": "development",
+  "port": "5000"
+}
+2025-07-05 20:27:43 [INFO]: HTTP GET /api/deposit/ 200 30.402 ms - 518 | User: 1 | ReqID: 85250ae9-620d-4b67-a710-5b80a2f78fd2
+2025-07-05 20:27:57 [INFO]: HTTP POST /api/deposit/create 200 53.707 ms - 179 | User: 1 | ReqID: 8a4534fb-2e09-4cd1-9ba5-e1e756fe979f
