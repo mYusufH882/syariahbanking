@@ -29,6 +29,7 @@ model User {
   qrCodes       QRCode[]
   notifications Notification[]
   Beneficiary   Beneficiary[]
+  ActivityLog   ActivityLog[]
 }
 
 model Account {
@@ -232,4 +233,41 @@ enum NotificationStatus {
   SENT
   FAILED
   READ
+}
+
+model ActivityLog {
+  id          Int              @id @default(autoincrement())
+  activityId  String           @unique
+  userId      Int?
+  action      String
+  resource    String?
+  resourceId  String?
+  description String?
+  metaadata   Json?
+  severity    ActivitySeverity @default(LOW)
+  status      ActivityStatus   @default(SUCCESS)
+  ipAddress   String?          @db.VarChar(45)
+  userAgent   String?          @db.Text
+  requestId   String?
+  createdAt   DateTime         @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([createdAt])
+}
+
+enum ActivitySeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ActivityStatus {
+  SUCCESS
+  FAILED
+  PENDING
 }
